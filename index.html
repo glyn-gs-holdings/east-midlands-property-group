@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>East Midlands Property Group | Supported Living</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #6B8F71;
+    --sage-light: #A8C5AC;
+    --sage-pale: #EAF2EB;
+    --cream: #FAF8F3;
+    --warm-brown: #5C4A3A;
+    --warm-brown-light: #8C7B6B;
+    --gold: #C9A84C;
+    --text: #2C2219;
+    --text-muted: #7A6E65;
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(107,143,113,0.15);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.08); }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .nav-logo-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--warm-brown);
+    letter-spacing: 0.01em;
+  }
+  .nav-logo-sub {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--sage);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--warm-brown);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 0;
+    height: 1.5px;
+    background: var(--sage);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: var(--sage);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: background 0.2s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--warm-brown) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -150px;
+    width: 650px; height: 650px;
+    background: radial-gradient(circle, rgba(168,197,172,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--sage-pale);
+    color: var(--sage);
+    border: 1px solid rgba(107,143,113,0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--warm-brown);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--warm-brown);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 40px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: var(--warm-brown);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 0.7rem; }
+  .btn-secondary span { font-size: 1.1rem; }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    animation: fadeUp 0.9s 0.2s ease both;
+    position: relative;
+  }
+  .hero-card-main {
+    background: var(--white);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(92,74,58,0.12);
+  }
+  .hero-img-placeholder {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(135deg, var(--sage-light) 0%, var(--sage) 50%, var(--warm-brown) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-house-icon {
+    font-size: 5rem;
+    opacity: 0.9;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+  }
+  .hero-card-body {
+    padding: 1.5rem;
+  }
+  .hero-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.3rem;
+  }
+  .hero-card-body p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .hero-stat-card {
+    position: absolute;
+    bottom: -20px; left: -30px;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    box-shadow: 0 12px 40px rgba(92,74,58,0.14);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+  .stat-icon {
+    width: 44px; height: 44px;
+    background: var(--sage-pale);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+  .stat-text strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--warm-brown);
+  }
+  .stat-text small {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .hero-badge-float {
+    position: absolute;
+    top: 20px; right: -15px;
+    background: var(--gold);
+    color: var(--white);
+    border-radius: 14px;
+    padding: 0.8rem 1.2rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(201,168,76,0.35);
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+  .hero-badge-float strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+  }
+  .hero-badge-float small {
+    font-size: 0.7rem;
+    opacity: 0.9;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 600;
+    color: var(--warm-brown);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--white);
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    height: 420px;
+    background: linear-gradient(160deg, var(--sage-pale) 0%, var(--sage-light) 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(107,143,113,0.3), transparent);
+    border-radius: 0 0 20px 20px;
+  }
+  .about-accent {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 120px; height: 120px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .values-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .value-dot {
+    width: 32px; height: 32px;
+    min-width: 32px;
+    background: var(--sage-pale);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-top: 2px;
+  }
+  .value-item h4 {
+    font-weight: 500;
+    color: var(--warm-brown);
+    margin-bottom: 0.2rem;
+    font-size: 0.95rem;
+  }
+  .value-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* SERVICES */
+  .services {
+    background: var(--cream);
+  }
+  .services-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(107,143,113,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sage), var(--sage-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(92,74,58,0.1); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 56px; height: 56px;
+    background: var(--sage-pale);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.4rem;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.7rem;
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* WHO WE HELP */
+  .who {
+    background: var(--warm-brown);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .who::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(168,197,172,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .who-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .who-header { margin-bottom: 3rem; }
+  .who-header .section-label { color: var(--sage-light); }
+  .who-header .section-title { color: var(--white); }
+  .who-header .section-desc { color: rgba(255,255,255,0.65); max-width: 580px; }
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .who-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: background 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  .who-card:hover { background: rgba(255,255,255,0.12); }
+  .who-card-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+  .who-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+  }
+  .who-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+
+  /* PROCESS */
+  .process {
+    background: var(--white);
+  }
+  .process-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .process-inner .section-desc { margin: 0 auto 3.5rem; }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 40px; left: 12.5%; right: 12.5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--sage-light), var(--sage-light));
+    border-top: 1px dashed var(--sage-light);
+    z-index: 0;
+  }
+  .process-step {
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  .step-num {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--sage-pale);
+    border: 2px solid var(--sage-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--sage);
+    font-weight: 600;
+    position: relative;
+    background: var(--white);
+  }
+  .process-step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.5rem;
+  }
+  .process-step p {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--sage-pale);
+  }
+  .contact-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-info { }
+  .contact-info .section-desc { margin-bottom: 2rem; }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(107,143,113,0.2);
+  }
+  .contact-detail:first-of-type { border-top: 1px solid rgba(107,143,113,0.2); }
+  .contact-icon {
+    width: 42px; height: 42px;
+    background: var(--sage);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-detail-text strong {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.1rem;
+  }
+  .contact-detail-text a,
+  .contact-detail-text span {
+    font-size: 0.95rem;
+    color: var(--warm-brown);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .contact-detail-text a:hover { color: var(--sage); }
+
+  .contact-form {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 40px rgba(92,74,58,0.08);
+  }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--warm-brown);
+    margin-bottom: 1.5rem;
+  }
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.4rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid rgba(107,143,113,0.2);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--sage);
+    background: var(--white);
+  }
+  .form-group textarea { height: 90px; }
+  .form-submit {
+    width: 100%;
+    background: var(--warm-brown);
+    color: var(--white);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--sage); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.65);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo .nav-logo-main { color: var(--white); font-size: 1rem; }
+  .footer-logo .nav-logo-sub { color: var(--sage-light); }
+  footer p { font-size: 0.82rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--sage-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-inner, .who-grid, .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="nav-logo-main">East Midlands Property Group</span>
+    <span class="nav-logo-sub">Supported Living Specialists</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#who-we-help">Who We Help</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">East Midlands Supported Living</div>
+    <h1>Homes that <em>nurture</em>,<br>lives that flourish</h1>
+    <p class="hero-desc">East Midlands Property Group provides high-quality supported living housing for young adults, individuals with disabilities, and those with special needs — delivering safe, caring environments where independence can grow.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Speak to Our Team</a>
+      <a href="#services" class="btn-secondary">Explore Our Services <span>→</span></a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="hero-img-placeholder">
+        <span class="hero-house-icon">🏡</span>
+      </div>
+      <div class="hero-card-body">
+        <h3>Supported Living, East Midlands</h3>
+        <p>Safe, warm and purposeful homes for every stage of life</p>
+      </div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-icon">🤝</div>
+      <div class="stat-text">
+        <strong>Person-Centred</strong>
+        <small>Every care plan tailored</small>
+      </div>
+    </div>
+    <div class="hero-badge-float">
+      <strong>East<br>Midlands</strong>
+      <small>Based &amp; Trusted</small>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-img">🏘️</div>
+      <div class="about-accent"></div>
+    </div>
+    <div class="reveal">
+      <p class="section-label">Who We Are</p>
+      <h2 class="section-title">A trusted name in supported living across the East Midlands</h2>
+      <p class="section-desc">East Midlands Property Group is dedicated to sourcing, developing and managing properties that serve those who need supported living. We work closely with care providers, local authorities and families to ensure every home we provide is a genuine foundation for a better life.</p>
+      <div class="values-list">
+        <div class="value-item">
+          <div class="value-dot">🌱</div>
+          <div>
+            <h4>Dignity &amp; Respect</h4>
+            <p>Every resident is treated as an individual, with their needs and choices placed at the heart of all we do.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-dot">🏠</div>
+          <div>
+            <h4>Quality Environments</h4>
+            <p>We provide well-maintained, comfortable properties that feel like homes, not institutions.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-dot">🤲</div>
+          <div>
+            <h4>Partnership Approach</h4>
+            <p>We collaborate with care commissioners, social workers and families to deliver the best outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <div>
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title">Our supported living services</h2>
+      </div>
+      <p class="section-desc" style="max-width:380px;">Specialist property solutions that meet the diverse needs of vulnerable individuals and their care teams.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🏡</div>
+        <h3>Supported Living Accommodation</h3>
+        <p>Purpose-configured properties providing a safe, supportive home environment for individuals who need help with daily living whilst retaining their independence.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">♿</div>
+        <h3>Disability-Adapted Homes</h3>
+        <p>Fully adapted properties with accessibility features including wheelchair access, wet rooms, level entry and specialist equipment to support physical and mobility needs.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">👨‍👩‍👦</div>
+        <h3>Young Adults Transitional Housing</h3>
+        <p>Bridging accommodation for young adults moving out of care or education, supporting the transition to independent living with the right level of guidance.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🧠</div>
+        <h3>Complex Needs Provision</h3>
+        <p>Specialist properties suitable for individuals with learning disabilities, autism, mental health needs or complex behavioural requirements.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🤝</div>
+        <h3>Care Provider Partnerships</h3>
+        <p>We work directly with registered care providers and social care commissioners to source suitable properties matched to their client group's needs.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📋</div>
+        <h3>Property Management</h3>
+        <p>Ongoing property management ensuring maintained standards, compliance and a responsive approach to any issues — so care providers can focus on residents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE HELP -->
+<section class="who" id="who-we-help">
+  <div class="who-inner">
+    <div class="who-header reveal">
+      <p class="section-label">Who We Support</p>
+      <h2 class="section-title">Serving those who need it most</h2>
+      <p class="section-desc">Our properties are designed and sourced to meet the needs of a wide range of individuals requiring supported living.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who-card reveal">
+        <div class="who-card-icon">🧑‍🤝‍🧑</div>
+        <h3>Young Adults</h3>
+        <p>Supporting young people aged 18+ who are transitioning from care, education or family settings into their own supported living environment.</p>
+      </div>
+      <div class="who-card reveal">
+        <div class="who-card-icon">🫀</div>
+        <h3>Physical Disabilities</h3>
+        <p>Providing wheelchair-accessible, fully adapted homes for individuals with physical disabilities who need accessible, barrier-free living spaces.</p>
+      </div>
+      <div class="who-card reveal">
+        <div class="who-card-icon">🌈</div>
+        <h3>Learning Disabilities & Autism</h3>
+        <p>Calm, structured, sensory-considered properties suited to individuals with learning disabilities, autism spectrum conditions and related needs.</p>
+      </div>
+      <div class="who-card reveal">
+        <div class="who-card-icon">💚</div>
+        <h3>Mental Health Needs</h3>
+        <p>Safe and stable housing environments that provide a secure base for individuals managing mental health conditions with professional support.</p>
+      </div>
+      <div class="who-card reveal">
+        <div class="who-card-icon">🏥</div>
+        <h3>Acquired Brain Injuries</h3>
+        <p>Appropriate accommodation for individuals living with acquired brain injuries, configured to support cognitive and physical rehabilitation journeys.</p>
+      </div>
+      <div class="who-card reveal">
+        <div class="who-card-icon">🌟</div>
+        <h3>Special Educational Needs</h3>
+        <p>Housing provision for those whose special educational and care needs require a thoughtful, tailored living environment to support their wellbeing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="how-it-works">
+  <div class="process-inner">
+    <p class="section-label reveal">How It Works</p>
+    <h2 class="section-title reveal">A clear, caring process</h2>
+    <p class="section-desc reveal">From first enquiry to move-in day, we guide you through every step with transparency and care.</p>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">1</div>
+        <h4>Initial Enquiry</h4>
+        <p>Get in touch with Dr Sue Burnett to discuss your needs, requirements and the individual to be housed.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">2</div>
+        <h4>Needs Assessment</h4>
+        <p>We work with you to understand the care, access and environmental requirements of the individual.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">3</div>
+        <h4>Property Matching</h4>
+        <p>We identify and present suitable properties across the East Midlands that match your specific criteria.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">4</div>
+        <h4>Move-In &amp; Support</h4>
+        <p>We manage the transition, ensuring the property is ready and the resident can settle in with confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">We're here to help find the right home</h2>
+      <p class="section-desc">Whether you're a care provider, commissioner, social worker or family member, our team is ready to listen and support you in finding the right property.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">👩‍⚕️</div>
+        <div class="contact-detail-text">
+          <strong>Key Contact</strong>
+          <span>Dr Sue Burnett</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-detail-text">
+          <strong>Email</strong>
+          <a href="mailto:sue.burnett@gs-holdings.co.uk">sue.burnett@gs-holdings.co.uk</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Region</strong>
+          <span>East Midlands, UK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <h3>Send us a message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Full name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Your Role</label>
+        <select>
+          <option value="">Select your role...</option>
+          <option>Care Provider</option>
+          <option>Social Worker / Commissioner</option>
+          <option>Family Member / Carer</option>
+          <option>Local Authority</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your housing needs..."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Send Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo nav-logo">
+    <span class="nav-logo-main">East Midlands Property Group</span>
+    <span class="nav-logo-sub">Supported Living Specialists</span>
+  </div>
+  <p>© 2025 East Midlands Property Group. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:sue.burnett@gs-holdings.co.uk">Email Us</a>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger grid children
+  document.querySelectorAll('.services-grid .service-card, .who-grid .who-card, .process-steps .process-step').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+
+  // Form submit
+  function handleSubmit() {
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--sage)';
+    setTimeout(() => {
+      btn.textContent = 'Send Enquiry';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
